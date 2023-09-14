@@ -22,6 +22,11 @@ import {
   fetchSequenceRequest,
   fetchSequenceSuccess,
 } from './slice';
+/* eslint-disable */ 
+import { getConfig } from '@edx/frontend-platform';
+import axios from "axios";
+import { getAuthenticatedHttpClient, getAuthenticatedUser } from '@edx/frontend-platform/auth';
+/* eslint-enable */
 
 export function fetchCourse(courseId) {
   return async (dispatch) => {
@@ -156,9 +161,22 @@ export function checkBlockCompletion(courseId, sequenceId, unitId) {
     if (models.units[unitId].complete) {
       return {}; // do nothing. Things don't get uncompleted after they are completed.
     }
-
     try {
       const isComplete = await getBlockCompletion(courseId, sequenceId, unitId);
+      /* eslint-disable */      
+      if (isComplete) {
+        const URL_POST_UpdateScore = getConfig().LMS_BASE_URL + '/api/gamification/v1/update_score/'+getAuthenticatedUser().userId+'/unit/'
+        console.log("URL_POST_UpdateScore: ", URL_POST_UpdateScore);
+        try {
+          alert('sendnig request')
+          const result = await axios.post(URL_POST_UpdateScore)
+          alert('sended request')
+          console.log('score update with success');
+        }catch (error) {
+          console.error('score has not been updated', error);
+        }
+      }
+      /* eslint-enable */
       dispatch(updateModel({
         modelType: 'units',
         model: {

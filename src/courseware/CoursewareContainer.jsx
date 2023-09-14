@@ -252,7 +252,6 @@ class CoursewareContainer extends Component {
         },
       },
     } = this.props;
-
     this.props.checkBlockCompletion(courseId, sequenceId, routeUnitId);
     history.push(`/course/${courseId}/${sequenceId}/${nextUnitId}`);
   }
