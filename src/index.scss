@@ -5,6 +5,7 @@
 
 @import "~@edx/frontend-component-footer/dist/footer";
 
+$red: #D23228;
 #root {
   display: flex;
   flex-direction: column;
@@ -71,8 +72,8 @@
     &:focus,
     &.active {
       font-weight: $font-weight-normal;
-      color: $primary-500;
-      border-bottom-color: $primary-500;
+      color: $red;
+      border-bottom-color: $red;
     }
   }
 }
@@ -139,7 +140,7 @@
         left: 0;
         right: 0;
         height: 2px;
-        background: $primary;
+        background: $danger;
       }
     }
 
@@ -201,7 +202,7 @@
 
       &.active {
         .unit-icon {
-          color: $primary-500;
+          color: $red;
         }
 
         &:after {
@@ -213,7 +214,7 @@
           right: auto;
           width: 2px;
           height: auto;
-          background: $primary;
+          background: $danger;
         }
       }
     }

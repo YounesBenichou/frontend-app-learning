@@ -168,9 +168,7 @@ export function checkBlockCompletion(courseId, sequenceId, unitId) {
         const URL_POST_UpdateScore = getConfig().LMS_BASE_URL + '/api/gamification/v1/update_score/'+getAuthenticatedUser().userId+'/unit/'
         console.log("URL_POST_UpdateScore: ", URL_POST_UpdateScore);
         try {
-          alert('sendnig request')
           const result = await axios.post(URL_POST_UpdateScore)
-          alert('sended request')
           console.log('score update with success');
         }catch (error) {
           console.error('score has not been updated', error);
